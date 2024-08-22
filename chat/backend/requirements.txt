@@ -1,0 +1,6 @@
+Flask
+openai
+flask-cors
+transformers
+torch
+langdetect

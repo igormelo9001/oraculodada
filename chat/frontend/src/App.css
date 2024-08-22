@@ -1,0 +1,163 @@
+/* App.css */
+
+.App {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Necessário para posicionar o botão de modo */
+  background-color: #f4f4f9; /* Cor de fundo clara */
+  color: #333; /* Cor do texto padrão */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave para tema escuro */
+}
+
+.dark-mode {
+  background-color: #121212; /* Cor de fundo escura */
+  color: #f4f4f9; /* Cor do texto para o modo escuro */
+}
+
+/* Estilo do botão de alternância de tema */
+.mode-toggle-button {
+  background-color: #fff; /* Cor de fundo branca */
+  color: #333; /* Cor do texto escuro */
+  border: 1px solid #ccc; /* Adiciona uma borda leve */
+  padding: 10px; /* Tamanho do padding reduzido */
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute; /* Posiciona o botão na extremidade direita */
+  top: 20px;
+  right: 20px;
+  font-size: 24px; /* Tamanho do ícone ajustado */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave para o botão */
+}
+
+.mode-toggle-button:hover {
+  background-color: #e0e0e0; /* Efeito de hover mais sutil */
+}
+
+/* Estilo do formulário de pergunta */
+.question-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative; /* Para posicionar os elementos animados abaixo dos botões e inputs */
+  z-index: 1; /* Mantém os botões e inputs acima das animações */
+}
+
+.question-input {
+  width: 80%; /* Aumenta a largura do campo de entrada */
+  padding: 15px;
+  font-size: 18px; /* Aumenta o tamanho da fonte */
+  border-radius: 25px; /* Bordas arredondadas */
+  border: 2px solid #3498db;
+  outline: none;
+  margin-right: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.question-input:focus {
+  border-color: #2980b9;
+}
+
+.submit-button {
+  background-color: #2ecc71; /* Verde para o botão de envio */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #27ae60; /* Cor do botão de envio ao passar o mouse */
+}
+
+/* Estilo da área de resposta */
+.response-container {
+  margin-top: 20px;
+}
+
+/* Estilo do carregamento */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-text {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Elementos florais nas laterais */
+.flower-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  background: linear-gradient(180deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+  z-index: 0; /* Colocar abaixo do conteúdo principal */
+}
+
+.flower-side.left {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.flower-side.right {
+  right: 0;
+  clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+}
+
+/* Animações de objetos passando */
+.animated-object {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(52, 152, 219, 0.5); /* Cor dos objetos */
+  border-radius: 50%;
+  z-index: 0; /* Colocar abaixo do conteúdo principal */
+  animation: move 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes move {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(500px) translateY(500px); }
+  100% { transform: translateX(-500px) translateY(-500px); }
+}
+
+/* Várias direções para os objetos */
+.animated-object:nth-child(1) {
+  animation-direction: normal;
+}
+
+.animated-object:nth-child(2) {
+  animation-direction: reverse;
+}
+
+.animated-object:nth-child(3) {
+  animation-direction: alternate;
+}
+
+.animated-object:nth-child(4) {
+  animation-direction: alternate-reverse;
+}
