@@ -6,7 +6,8 @@ app = Flask(__name__)
 CORS(app)  # Permite requisições de qualquer domínio, ajuste conforme necessário
 
 # Inicializa o pipeline do GPT-Neo para geração de texto
-generator = pipeline('text-generation', model='EleutherAI/gpt-neo-1.3B')
+# generator = pipeline('text-generation', model='EleutherAI/gpt-neo-1.3B')
+generator = pipeline('text-generation', model='distilgpt2')
 
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
