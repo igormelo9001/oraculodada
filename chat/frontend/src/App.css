@@ -8,53 +8,53 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative; /* Necessário para posicionar o botão de modo */
-  background-color: #f4f4f9; /* Cor de fundo clara */
-  color: #333; /* Cor do texto padrão */
-  transition: background-color 0.3s, color 0.3s; /* Transição suave para tema escuro */
+  position: relative;
+  background-color: #f4f4f9;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .dark-mode {
-  background-color: #121212; /* Cor de fundo escura */
-  color: #f4f4f9; /* Cor do texto para o modo escuro */
+  background-color: #121212;
+  color: #f4f4f9;
 }
 
-/* Estilo do botão de alternância de tema */
 .mode-toggle-button {
-  background-color: #fff; /* Cor de fundo branca */
-  color: #333; /* Cor do texto escuro */
-  border: 1px solid #ccc; /* Adiciona uma borda leve */
-  padding: 10px; /* Tamanho do padding reduzido */
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px;
   cursor: pointer;
   border-radius: 50%;
-  position: absolute; /* Posiciona o botão na extremidade direita */
+  position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 24px; /* Tamanho do ícone ajustado */
-  transition: background-color 0.3s, color 0.3s; /* Transição suave para o botão */
+  font-size: 24px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .mode-toggle-button:hover {
-  background-color: #e0e0e0; /* Efeito de hover mais sutil */
+  background-color: #e0e0e0;
 }
 
-/* Estilo do formulário de pergunta */
 .question-form {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  position: relative; /* Para posicionar os elementos animados abaixo dos botões e inputs */
-  z-index: 1; /* Mantém os botões e inputs acima das animações */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
 }
 
 .question-input {
-  width: 80%; /* Aumenta a largura do campo de entrada */
+  width: 100%;
+  max-width: 400px;
   padding: 15px;
-  font-size: 18px; /* Aumenta o tamanho da fonte */
-  border-radius: 25px; /* Bordas arredondadas */
+  font-size: 18px;
+  border-radius: 25px;
   border: 2px solid #3498db;
   outline: none;
-  margin-right: 10px;
+  margin-bottom: 10px;
   transition: border-color 0.3s ease;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .submit-button {
-  background-color: #2ecc71; /* Verde para o botão de envio */
+  background-color: #2ecc71;
   color: white;
   border: none;
   padding: 15px 30px;
@@ -73,15 +73,14 @@
 }
 
 .submit-button:hover {
-  background-color: #27ae60; /* Cor do botão de envio ao passar o mouse */
+  background-color: #27ae60;
 }
 
-/* Estilo da área de resposta */
 .response-container {
   margin-top: 20px;
 }
 
-/* Estilo do carregamento */
+/* Carregamento */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -114,7 +113,7 @@
   bottom: 0;
   width: 100px;
   background: linear-gradient(180deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
-  z-index: 0; /* Colocar abaixo do conteúdo principal */
+  z-index: 0;
 }
 
 .flower-side.left {
@@ -127,14 +126,13 @@
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
 }
 
-/* Animações de objetos passando */
 .animated-object {
   position: absolute;
   width: 50px;
   height: 50px;
-  background-color: rgba(52, 152, 219, 0.5); /* Cor dos objetos */
+  background-color: rgba(52, 152, 219, 0.5);
   border-radius: 50%;
-  z-index: 0; /* Colocar abaixo do conteúdo principal */
+  z-index: 0;
   animation: move 10s linear infinite;
   opacity: 0.7;
 }
@@ -145,7 +143,7 @@
   100% { transform: translateX(-500px) translateY(-500px); }
 }
 
-/* Várias direções para os objetos */
+/* Direções para os objetos animados */
 .animated-object:nth-child(1) {
   animation-direction: normal;
 }
@@ -160,4 +158,68 @@
 
 .animated-object:nth-child(4) {
   animation-direction: alternate-reverse;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+  .mode-toggle-button {
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .question-form {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .question-input {
+    font-size: 16px;
+  }
+
+  .submit-button {
+    padding: 10px 20px;
+  }
+
+  .loading-text {
+    font-size: 20px;
+  }
+
+  .loader {
+    width: 100px;
+    height: 100px;
+  }
+
+  .flower-side {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mode-toggle-button {
+    font-size: 18px;
+    top: 5px;
+    right: 5px;
+  }
+
+  .question-input {
+    font-size: 14px;
+  }
+
+  .submit-button {
+    padding: 8px 15px;
+  }
+
+  .loading-text {
+    font-size: 18px;
+  }
+
+  .loader {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flower-side {
+    width: 60px;
+  }
 }
