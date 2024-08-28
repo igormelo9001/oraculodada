@@ -128,8 +128,8 @@ def chatbot():
         if not pergunta:
             return jsonify({"erro": "Pergunta não fornecida."}), 400
 
-        #resposta = gerar_texto(pergunta)
-        resposta = text 
+        resposta = gerar_texto(pergunta)
+        #resposta = gerar_texto(text)
         return jsonify({"resposta": resposta})
     
     except Exception as e:
