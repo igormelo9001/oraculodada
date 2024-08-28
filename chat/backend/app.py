@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Sequential
@@ -6,7 +7,7 @@ from keras.layers import LSTM, Dense, Embedding
 import numpy as np
 
 app = Flask(__name__)
-
+CORS(app)
 # Textos fixos para treinamento
 text = """
 A Ascensão da China e suas Implicações Geopolíticas Globais
