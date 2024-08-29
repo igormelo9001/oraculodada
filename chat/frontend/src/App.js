@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
-// Componente para alternar entre modos escuro e claro
 const ModeToggleButton = ({ darkMode, toggleDarkMode }) => (
   <button className="mode-toggle-button" onClick={toggleDarkMode}>
     {darkMode ? <FaSun /> : <FaMoon />}
   </button>
 );
 
-// Componente para o formulário de pergunta
-const QuestionForm = ({ pergunta, setPergunta, enviarPergunta }) => (
+const QuestionForm = ({ pergunta, setPergunta, enviarPergunta, enabled }) => (
   <form onSubmit={enviarPergunta} className="question-form">
     <input
       type="text"
@@ -18,12 +16,14 @@ const QuestionForm = ({ pergunta, setPergunta, enviarPergunta }) => (
       onChange={(e) => setPergunta(e.target.value)}
       placeholder="Faça uma pergunta"
       className="question-input"
+      disabled={!enabled}
     />
-    <button type="submit" className="submit-button">Enviar</button>
+    <button type="submit" className="submit-button" disabled={!enabled}>
+      Enviar
+    </button>
   </form>
 );
 
-// Componente para exibir a resposta
 const ResponseContainer = ({ loading, resposta }) => (
   <div className="response-container">
     <h2>Resposta:</h2>
@@ -38,7 +38,6 @@ const ResponseContainer = ({ loading, resposta }) => (
   </div>
 );
 
-// Componente principal
 function App() {
   const [pergunta, setPergunta] = useState('');
   const [resposta, setResposta] = useState('');
@@ -54,10 +53,14 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ pergunta, usuario_id: 1 }),
+        body: JSON.stringify({ pergunta }),
       });
       const data = await response.json();
-      setResposta(data.resposta);
+      if (response.ok) {
+        setResposta(data.resposta);
+      } else {
+        setResposta(data.erro || 'Erro ao obter resposta. Tente novamente.');
+      }
     } catch (error) {
       setResposta('Erro ao obter resposta. Tente novamente.');
     }
@@ -70,7 +73,6 @@ function App() {
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
-      {/* Elementos decorativos animados */}
       <div className="flower-side left"></div>
       <div className="flower-side right"></div>
       <div className="animated-object" style={{ top: '10%', left: '20%' }}></div>
@@ -78,15 +80,12 @@ function App() {
       <div className="animated-object" style={{ top: '80%', left: '30%' }}></div>
       <div className="animated-object" style={{ top: '30%', left: '70%' }}></div>
       
-      {/* Botão de alternância de modo */}
       <ModeToggleButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       
       <h1>Oráculo Dadaísta</h1>
       
-      {/* Formulário de pergunta */}
-      <QuestionForm pergunta={pergunta} setPergunta={setPergunta} enviarPergunta={enviarPergunta} />
+      <QuestionForm pergunta={pergunta} setPergunta={setPergunta} enviarPergunta={enviarPergunta} enabled={!loading} />
       
-      {/* Container da resposta */}
       <ResponseContainer loading={loading} resposta={resposta} />
     </div>
   );

@@ -2,6 +2,4 @@ Flask
 flask-cors
 transformers
 torch
-langdetect
 numpy
-tensorflow
